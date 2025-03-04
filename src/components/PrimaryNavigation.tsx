@@ -5,14 +5,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import InputBase from '@mui/material/InputBase';
-import {styled, alpha} from '@mui/material/styles';
+import {styled, alpha, Theme} from '@mui/material/styles';
 import SearchIcon from '@mui/icons-material/Search';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import IconButton from '@mui/material/IconButton';
 import MenuIcon from '@mui/icons-material/Menu';
 
-const Search = styled('div')(({theme}) => ({
+const Search = styled('div')(({theme}: {theme: Theme}) => ({
     position: 'relative',
     borderRadius: 'theme.shape.borderRadius',
     backgroundColor: alpha(theme.palette.common.white, 0.15),
@@ -27,7 +27,7 @@ const Search = styled('div')(({theme}) => ({
     },
 }));
 
-const SearchIconWrapper = styled('div')(({theme}) => ({
+const SearchIconWrapper = styled('div')(({theme} : {theme: Theme}) => ({
     padding: theme.spacing(0, 2),
     height: '100%',
     position: 'absolute',
@@ -37,20 +37,20 @@ const SearchIconWrapper = styled('div')(({theme}) => ({
     justifyContent: 'center',
 }));
 
-const StyledInputBase = styled(InputBase)(({theme}) => ({
-    color: 'inherit',
+const StyledInputBase = styled(InputBase)(({theme} : {theme: Theme}) => ({
+    color: 'inherit',        
     '& .MuiInputBase-input': {
         padding: theme.spacing(1, 1, 1, 0),
         paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         transition: theme.transitions.create('width'),
-        width: '100%',
+        width: '100%',        
         [theme.breakpoints.up('sm')]: {
             width: '12ch',
             '&:focus': {
                 width: '20ch',
             },
         },
-    },
+    },    
 }));
 
 
@@ -85,8 +85,9 @@ function PrimaryNavigation() {
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
-                        MenuListProps={{
+                        slotProps={{ list: {
                             'aria-labelledby': 'basic-button',
+                        }
                         }}
                         >
                             <MenuItem onClick={handleClose}>All</MenuItem>
